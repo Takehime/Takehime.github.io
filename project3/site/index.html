@@ -1,1 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>С 8 Марта, бабуля!</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            width: 90vw;
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #e91e63;
+        }
+        .flower {
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .flower:hover {
+            transform: scale(1.1);
+        }
+        .message, .photo {
+            display: none;
+            margin-top: 10px;
+            font-size: 22px;
+            color: #333;
+        }
+        .photo img {
+            width: 100%;
+            max-width: 960px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            animation: floatUp 2s ease-in-out forwards;
+        }
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>С 8 Марта, бабуля!</h1>
+        <h2>Нажми на цветок, чтобы получить пожелание.</h2>
+        <img src="flowers1.jpg" alt="Цветок" class="flower" onclick="showMessage()">
+        <p class="message">Дорогая бабушка! 🌷💖
+
+            С 8 Марта! Пусть эта весна принесет тебе много радости, тепла и улыбок. Ты – самая заботливая, мудрая и добрая, и я бесконечно благодарен за твою любовь и поддержку.
+            
+            Желаю тебе крепкого здоровья, счастья, прекрасного настроения и солнечных дней. Пусть каждый день будет наполнен теплотой родных, уютом и приятными моментами. Ты – настоящее сокровище нашей семьи, и мы тебя очень любим!
+            
+            С праздником, моя дорогая бабушка! 💐✨ <br>    От внука Димы</p>
+        <div class="photo">
+            <img src="babylia.jpg" alt="Мама" id="mom-photo">
+        </div>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.querySelector('.message').style.display = 'block';
+            document.querySelector('.photo').style.display = 'block';
+            generateHearts();
+        }
+
+        function generateHearts() {
+            const photo = document.getElementById('mom-photo');
+            const positions = [
+                { top: 0, left: 0 },
+                { top: 0, right: 0 },
+                { bottom: 0, left: 0 },
+                { bottom: 0, right: 0 }
+            ];
+            positions.forEach(pos => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                Object.assign(heart.style, pos);
+                photo.parentElement.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            });
+        }
+    </script>
+</body>
+</html>
 
